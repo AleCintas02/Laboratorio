@@ -84,7 +84,7 @@ const Navbar = () => {
                 <div className="contenedor">
                     <div className="titulo">
                         <h1>Laboratorio </h1>
-                        <p>de Redes y Programas</p>
+                        <p>De análisis clínicos</p>
                     </div>
                     <div className="titulo">
                         <h1>Ministerio de Salud Pública </h1>
