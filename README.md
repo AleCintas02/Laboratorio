@@ -14,6 +14,7 @@
     <li>Login y Registro</li>
     <li>Solicitar turno</li>
     <li>Reprogramar turno</li>
+    <li>Descargar resultados</li>
     <li>Visualizar/Descargar resultados</li>
 </ul>
 
