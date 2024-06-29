@@ -28,8 +28,9 @@ const FormularioPaciente = () => {
         casa: "",
         barrio: "",
         email: "",
-        sexo: "", // Nuevo campo
-        estado: "pendiente", // Añadido campo estado con valor por defecto
+        sexo: "",
+        estado: "pendiente", 
+        rol: "P",
     });
 
     const [errors, setErrors] = useState({});

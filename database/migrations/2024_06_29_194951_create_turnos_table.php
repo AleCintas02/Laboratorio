@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('sexo');
             $table->enum('estado', ['entregado', 'pendiente'])->default('pendiente');
+            $table->enum('rol', ['root', 'A', 'P'])->default('P');
             $table->timestamps();
         });
     }

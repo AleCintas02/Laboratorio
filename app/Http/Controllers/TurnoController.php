@@ -27,6 +27,7 @@ class TurnoController extends Controller
             'sexo' => 'required|string|in:Masculino,Femenino,X',
             'email' => 'required|string|email|max:255',
             'estado' => 'required|string|in:entregado,pendiente', // Validación para el campo estado
+            'rol' => 'required|string|in:root,A,P',
         ]);
 
         // Crear un nuevo turno con los datos validados
