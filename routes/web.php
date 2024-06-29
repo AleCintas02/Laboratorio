@@ -1,0 +1,55 @@
+<?php
+
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TurnoController;
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
+
+Route::get('/', function () {
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+});
+
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+
+Route::get('/solicitar-turno', function () {
+    return Inertia::render('FormularioPaciente');
+});
+
+Route::get('/descargar-resultados', function () {
+    return Inertia::render('Resultados');
+});
+Route::get('/reprogramar-turno', function () {
+    return Inertia::render('ReprogramacionTurno');
+});
+Route::get('//turno-solicitado-con-exito', function () {
+    return Inertia::render('TurnoSolicitado');
+});
+
+
+
+
+
+Route::prefix('api')->group(function () {
+    Route::post('/turnos', [TurnoController::class, 'store']);
+});
+
+
+
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';

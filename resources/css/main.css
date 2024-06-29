@@ -1,0 +1,48 @@
+a{
+    text-decoration: none;
+}
+
+.svg-turno{
+    width: 230px;
+}
+
+.contenedor-svg{
+
+    display: flex;
+    height: 500px;
+    justify-content: space-between;
+}
+
+.contenedores-svg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 330px;
+}
+
+.descripcion{
+    margin-top: 50px;
+    
+}
+
+.descripcion p{
+    margin-top: 20px;
+    
+}
+
+.descripcion a{
+    margin-top: 20px;
+    
+}
+
+
+#resultados {
+    width: 270px;
+}
+
+
+#turnos {
+    width: 600px;
+    margin-top: 30px;
+}

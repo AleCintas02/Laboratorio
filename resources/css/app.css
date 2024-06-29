@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.cuerpo {
+    background-color: white;
+    border-radius: 10px;
+    width: 1200px;
+    margin: 50px auto 0 auto;
+    height: auto;
+    padding: 40px;
+  }

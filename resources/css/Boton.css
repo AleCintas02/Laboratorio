@@ -1,0 +1,56 @@
+.boton-con-opciones {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+  }
+  
+  .boton-label {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #000;
+    padding: 0;
+    position: relative;
+  }
+  
+  .boton-label .arrow {
+    font-size: 12px;
+    margin-left: 5px;
+  }
+  
+  .boton-label::after {
+    content: '';
+    display: block;
+    width: 0%;
+    height: 2px;
+    background-color: #000;
+    margin-top: 5px;
+    transition: width 0.3s ease;
+  }
+  
+  .boton-label:hover::after {
+    width: 100%;
+  }
+  
+  .opciones {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+    margin-top: 10px;
+    min-width: 100px;
+    width: 200px;
+  }
+  
+  .opciones p {
+    padding: 12px 16px;
+    margin: 0;
+    cursor: pointer;
+  }
+  
+  .opciones p:hover {
+    background-color: #f1f1f1;
+  }
+  
