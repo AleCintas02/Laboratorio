@@ -18,4 +18,7 @@
 </ul>
 
 
-<img src="./Laboratorio.png" alt="" />
+<img src="./home.png" alt="" />
+<img src="./turnos.png" alt="" />
+<img src="./resultados.png" alt="" />
+<img src="./reprogramar.png" alt="" />
