@@ -15,6 +15,7 @@ export default function Register() {
         email: "",
         password: "",
         password_confirmation: "",
+        rol: "P",
     });
 
     const [dniError, setDniError] = useState(null);
