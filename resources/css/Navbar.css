@@ -65,16 +65,16 @@ p{
 
 
 .header-bottom {
-    text-align: center;
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background: linear-gradient(90deg, #00a859, #be00db);
-    height: 100px;
-
+  text-align: center;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(90deg, #007a43, #9500b3);
+  height: 100px;
 }
+
 
 .titulo h1{
   font-size: 1.3rem;
