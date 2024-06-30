@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TurnoController;
 use Illuminate\Foundation\Application;
@@ -30,11 +31,18 @@ Route::get('/descargar-resultados', function () {
 Route::get('/reprogramar-turno', function () {
     return Inertia::render('ReprogramacionTurno');
 });
-Route::get('//turno-solicitado-con-exito', function () {
+Route::get('/turno-solicitado-con-exito', function () {
     return Inertia::render('TurnoSolicitado');
 });
 
 
+
+Route::middleware(['auth', 'rol:root'])->group(function () {
+    Route::get('register-admin', [AdminController::class, 'create'])
+        ->name('register-admin');
+
+    Route::post('register-admin', [AdminController::class, 'store']);
+});
 
 
 
