@@ -5,6 +5,7 @@ import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { Head, Link, useForm } from "@inertiajs/react";
+import Navbar from "@/Components/Navbar";
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -32,19 +33,19 @@ export default function Register() {
 
     const validateDni = (dni) => {
         const hasOnlyNumbers = /^\d+$/.test(dni); // valida que solo sean números
-    
+
         if (!dni) {
             return "El DNI es obligatorio.";
         }
-    
+
         if (dni.length < 5) {
             return `El DNI debe tener al menos 5 caracteres.`;
         }
-    
+
         if (!hasOnlyNumbers) {
             return "El DNI solo debe contener números.";
         }
-    
+
         return null;
     };
 
@@ -169,152 +170,167 @@ export default function Register() {
     };
 
     return (
-        <GuestLayout>
-            <Head title="Register" />
+        <div>
+            <Navbar></Navbar>
+            <GuestLayout>
+                <Head title="Register" />
 
-            <form onSubmit={submit}>
-                <div>
-                    <InputLabel htmlFor="dni" value="Documento" />
+                <form onSubmit={submit}>
+                    <div>
+                        <InputLabel htmlFor="dni" value="Documento" />
 
-                    <TextInput
-                        id="dni"
-                        name="dni"
-                        value={data.dni}
-                        className="mt-1 block w-full"
-                        autoComplete="dni"
-                        onChange={handleDniChange}
-                        required
-                    />
+                        <TextInput
+                            id="dni"
+                            name="dni"
+                            value={data.dni}
+                            className="mt-1 block w-full"
+                            autoComplete="dni"
+                            onChange={handleDniChange}
+                            required
+                        />
 
-                    <InputError message={errors.dni} className="mt-2" />
-                    {dniError && (
-                        <p className="text-red-500 text-xs mt-2">{dniError}</p>
-                    )}
-                </div>
+                        <InputError message={errors.dni} className="mt-2" />
+                        {dniError && (
+                            <p className="text-red-500 text-xs mt-2">
+                                {dniError}
+                            </p>
+                        )}
+                    </div>
 
-                <div>
-                    <InputLabel htmlFor="last_name" value="Apellido" />
+                    <div>
+                        <InputLabel htmlFor="last_name" value="Apellido" />
 
-                    <TextInput
-                        id="last_name"
-                        name="last_name"
-                        value={data.last_name} 
-                        className="mt-1 block w-full"
-                        autoComplete="family-name"
-                        onChange={handleLastNameChange}
-                        required
-                    />
+                        <TextInput
+                            id="last_name"
+                            name="last_name"
+                            value={data.last_name}
+                            className="mt-1 block w-full"
+                            autoComplete="family-name"
+                            onChange={handleLastNameChange}
+                            required
+                        />
 
-                    <InputError message={errors.last_name} className="mt-2" />
-                    {lastNameError && (
-                        <p className="text-red-500 text-xs mt-2">{lastNameError}</p>
-                    )}
-                </div>
+                        <InputError
+                            message={errors.last_name}
+                            className="mt-2"
+                        />
+                        {lastNameError && (
+                            <p className="text-red-500 text-xs mt-2">
+                                {lastNameError}
+                            </p>
+                        )}
+                    </div>
 
-                <div>
-                    <InputLabel htmlFor="name" value="Nombre" />
+                    <div>
+                        <InputLabel htmlFor="name" value="Nombre" />
 
-                    <TextInput
-                        id="name"
-                        name="name"
-                        value={data.name}
-                        className="mt-1 block w-full"
-                        autoComplete="given-name"
-                        onChange={handleNameChange}
-                        required
-                    />
+                        <TextInput
+                            id="name"
+                            name="name"
+                            value={data.name}
+                            className="mt-1 block w-full"
+                            autoComplete="given-name"
+                            onChange={handleNameChange}
+                            required
+                        />
 
-                    <InputError message={errors.name} className="mt-2" />
-                    {nameError && (
-                        <p className="text-red-500 text-xs mt-2">{nameError}</p>
-                    )}
-                </div>
+                        <InputError message={errors.name} className="mt-2" />
+                        {nameError && (
+                            <p className="text-red-500 text-xs mt-2">
+                                {nameError}
+                            </p>
+                        )}
+                    </div>
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="email" value="Correo" />
+                    <div className="mt-4">
+                        <InputLabel htmlFor="email" value="Correo" />
 
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="email"
-                        onChange={handleEmailChange}
-                        required
-                    />
+                        <TextInput
+                            id="email"
+                            type="email"
+                            name="email"
+                            value={data.email}
+                            className="mt-1 block w-full"
+                            autoComplete="email"
+                            onChange={handleEmailChange}
+                            required
+                        />
 
-                    <InputError message={errors.email} className="mt-2" />
-                    {emailError && (
-                        <p className="text-red-500 text-xs mt-2">
-                            {emailError}
-                        </p>
-                    )}
-                </div>
+                        <InputError message={errors.email} className="mt-2" />
+                        {emailError && (
+                            <p className="text-red-500 text-xs mt-2">
+                                {emailError}
+                            </p>
+                        )}
+                    </div>
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Contraseña" />
+                    <div className="mt-4">
+                        <InputLabel htmlFor="password" value="Contraseña" />
 
-                    <TextInput
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        onChange={handlePasswordChange}
-                        required
-                    />
+                        <TextInput
+                            id="password"
+                            type="password"
+                            name="password"
+                            value={data.password}
+                            className="mt-1 block w-full"
+                            autoComplete="new-password"
+                            onChange={handlePasswordChange}
+                            required
+                        />
 
-                    <InputError message={errors.password} className="mt-2" />
-                    {passwordError && (
-                        <p className="text-red-500 text-xs mt-2">
-                            {passwordError}
-                        </p>
-                    )}
-                </div>
+                        <InputError
+                            message={errors.password}
+                            className="mt-2"
+                        />
+                        {passwordError && (
+                            <p className="text-red-500 text-xs mt-2">
+                                {passwordError}
+                            </p>
+                        )}
+                    </div>
 
-                <div className="mt-4">
-                    <InputLabel
-                        htmlFor="password_confirmation"
-                        value="Confirmar Contraseña"
-                    />
+                    <div className="mt-4">
+                        <InputLabel
+                            htmlFor="password_confirmation"
+                            value="Confirmar Contraseña"
+                        />
 
-                    <TextInput
-                        id="password_confirmation"
-                        type="password"
-                        name="password_confirmation"
-                        value={data.password_confirmation}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        onChange={handlePasswordConfirmationChange}
-                        required
-                    />
+                        <TextInput
+                            id="password_confirmation"
+                            type="password"
+                            name="password_confirmation"
+                            value={data.password_confirmation}
+                            className="mt-1 block w-full"
+                            autoComplete="new-password"
+                            onChange={handlePasswordConfirmationChange}
+                            required
+                        />
 
-                    <InputError
-                        message={errors.password_confirmation}
-                        className="mt-2"
-                    />
-                    {passwordConfirmationError && (
-                        <p className="text-red-500 text-xs mt-2">
-                            {passwordConfirmationError}
-                        </p>
-                    )}
-                </div>
+                        <InputError
+                            message={errors.password_confirmation}
+                            className="mt-2"
+                        />
+                        {passwordConfirmationError && (
+                            <p className="text-red-500 text-xs mt-2">
+                                {passwordConfirmationError}
+                            </p>
+                        )}
+                    </div>
 
-                <div className="flex items-center justify-end mt-4">
-                    <Link
-                        href={route("login")}
-                        className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                        Ya estás registrado?
-                    </Link>
+                    <div className="flex items-center justify-end mt-4">
+                        <Link
+                            href={route("login")}
+                            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        >
+                            Ya estás registrado?
+                        </Link>
 
-                    <PrimaryButton className="ml-4" disabled={processing}>
-                        REGISTRARSE
-                    </PrimaryButton>
-                </div>
-            </form>
-        </GuestLayout>
+                        <PrimaryButton className="ml-4" disabled={processing}>
+                            REGISTRARSE
+                        </PrimaryButton>
+                    </div>
+                </form>
+            </GuestLayout>
+        </div>
     );
 }
