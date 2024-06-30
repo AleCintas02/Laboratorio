@@ -28,8 +28,9 @@ const FormularioPaciente = () => {
         casa: "",
         barrio: "",
         email: "",
+        fecha_nacimiento: "",
         sexo: "",
-        estado: "pendiente", 
+        estado: "pendiente",
         rol: "P",
     });
 
@@ -100,6 +101,9 @@ const FormularioPaciente = () => {
         if (!formData.sexo?.trim()) {
             validationErrors.sexo = "* Barrio es obligatorio";
         }
+        if (!formData.fecha_nacimiento?.trim()) {
+            validationErrors.fecha_nacimiento = "* Fecha es obligatorio";
+        }
 
         setErrors(validationErrors);
 
@@ -112,7 +116,7 @@ const FormularioPaciente = () => {
                         "Formulario enviado correctamente:",
                         response.data
                     );
-                    window.location.href = '/turno-solicitado-con-exito';
+                    window.location.href = "/turno-solicitado-con-exito";
                     // Manejar la respuesta del backend si es necesario
                 })
                 .catch((error) => {
@@ -293,21 +297,22 @@ const FormularioPaciente = () => {
                                 </div>
                             )}
                         </Form.Group>
-                        {/* 
+
+                        
                         <Form.Group as={Col} controlId="formFechaNacimiento">
                             <Form.Label>Fecha nacimiento *</Form.Label>
                             <FormControl
-                                type="date"
-                                name="fechaNacimiento"
-                                value={formData.fechaNacimiento}
-                                onChange={handleChange}
-                            />
-                            {errors.fechaNacimiento && (
-                                <div className="text-danger">
-                                    {errors.fechaNacimiento}
-                                </div>
-                            )}
-                        </Form.Group> */}
+                                 type="date"
+                                 name="fecha_nacimiento"
+                                 value={formData.fecha_nacimiento}
+                                 onChange={handleChange}
+                             />
+                             {errors.fecha_nacimiento && (
+                                 <div className="text-danger">
+                                     {errors.fecha_nacimiento}
+                                 </div>
+                             )}
+                         </Form.Group>
 
                         <Form.Group as={Col} controlId="formSexo">
                             <Form.Label>Sexo *</Form.Label>
@@ -332,6 +337,22 @@ const FormularioPaciente = () => {
                             </div>
                         )}
                     </Row>
+                    {/* <Row className="mb-3">
+                        <Form.Group as={Col} controlId="formFechaNacimiento">
+                            <Form.Label>Fecha de Nacimiento *</Form.Label>
+                            <FormControl
+                                type="date"
+                                name="fecha_nacimiento"
+                                value={formData.fecha_nacimiento}
+                                onChange={handleChange}
+                            />
+                            {errors.fecha_nacimiento && (
+                                <div className="text-danger">
+                                    {errors.fecha_nacimiento}
+                                </div>
+                            )}
+                        </Form.Group>
+                    </Row> */}
 
                     <Row className="mb-3">
                         <Form.Group as={Col} controlId="formEmail">

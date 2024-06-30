@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('barrio')->nullable();
             $table->string('email');
             $table->string('sexo');
+            $table->date('fecha_nacimiento');
             $table->enum('estado', ['entregado', 'pendiente'])->default('pendiente');
             $table->enum('rol', ['root', 'A', 'P'])->default('P');
             $table->timestamps();

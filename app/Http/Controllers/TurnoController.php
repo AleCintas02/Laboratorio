@@ -23,9 +23,9 @@ class TurnoController extends Controller
             'manzana' => 'nullable|string|max:255',
             'casa' => 'nullable|string|max:255',
             'barrio' => 'nullable|string|max:255',
-            //'fechaNacimiento' => 'required|date',
             'sexo' => 'required|string|in:Masculino,Femenino,X',
             'email' => 'required|string|email|max:255',
+            'fecha_nacimiento' => 'required|date',
             'estado' => 'required|string|in:entregado,pendiente', // Validación para el campo estado
             'rol' => 'required|string|in:root,A,P',
         ]);
