@@ -31,20 +31,20 @@ export default function Register() {
     }, []);
 
     const validateDni = (dni) => {
-        const hasNumber = /[0-9]/.test(dni); // corrected variable name
-
+        const hasOnlyNumbers = /^\d+$/.test(dni); // valida que solo sean números
+    
         if (!dni) {
             return "El DNI es obligatorio.";
         }
-
+    
         if (dni.length < 5) {
             return `El DNI debe tener al menos 5 caracteres.`;
         }
-
-        if (!hasNumber) {
-            return "El DNI solo debe contener números."; // corrected message
+    
+        if (!hasOnlyNumbers) {
+            return "El DNI solo debe contener números.";
         }
-
+    
         return null;
     };
 
@@ -198,7 +198,7 @@ export default function Register() {
                     <TextInput
                         id="last_name"
                         name="last_name"
-                        value={data.last_name} // corrected key name
+                        value={data.last_name} 
                         className="mt-1 block w-full"
                         autoComplete="family-name"
                         onChange={handleLastNameChange}
