@@ -28,10 +28,12 @@ const FormularioPaciente = () => {
         casa: "",
         barrio: "",
         email: "",
-        fecha_nacimiento: "",
         sexo: "",
+        fecha_nacimiento: "",
         estado: "pendiente",
-        rol: "P",
+        estado_resultado: "pendiente",
+        resultados: "",
+        //rol: "P",
     });
 
     const [errors, setErrors] = useState({});
@@ -117,11 +119,19 @@ const FormularioPaciente = () => {
                         response.data
                     );
                     window.location.href = "/turno-solicitado-con-exito";
-                    // Manejar la respuesta del backend si es necesario
                 })
                 .catch((error) => {
-                    console.error("Error al enviar el formulario:", error);
-                    // Manejar el error aquí
+                    if (error.response) {
+                        console.error(
+                            "Error al enviar el formulario:",
+                            error.response.data
+                        );
+                    } else {
+                        console.error(
+                            "Error al enviar el formulario:",
+                            error.message
+                        );
+                    }
                 });
         }
     };
@@ -298,21 +308,20 @@ const FormularioPaciente = () => {
                             )}
                         </Form.Group>
 
-                        
                         <Form.Group as={Col} controlId="formFechaNacimiento">
                             <Form.Label>Fecha nacimiento *</Form.Label>
                             <FormControl
-                                 type="date"
-                                 name="fecha_nacimiento"
-                                 value={formData.fecha_nacimiento}
-                                 onChange={handleChange}
-                             />
-                             {errors.fecha_nacimiento && (
-                                 <div className="text-danger">
-                                     {errors.fecha_nacimiento}
-                                 </div>
-                             )}
-                         </Form.Group>
+                                type="date"
+                                name="fecha_nacimiento"
+                                value={formData.fecha_nacimiento}
+                                onChange={handleChange}
+                            />
+                            {errors.fecha_nacimiento && (
+                                <div className="text-danger">
+                                    {errors.fecha_nacimiento}
+                                </div>
+                            )}
+                        </Form.Group>
 
                         <Form.Group as={Col} controlId="formSexo">
                             <Form.Label>Sexo *</Form.Label>

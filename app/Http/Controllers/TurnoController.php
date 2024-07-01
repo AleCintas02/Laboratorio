@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Turno;
 use Illuminate\Http\Request;
+use App\Models\Turno;
+use Illuminate\Support\Facades\Log;  // Añadir esta línea para importar Log
 
 class TurnoController extends Controller
 {
@@ -26,9 +27,14 @@ class TurnoController extends Controller
             'sexo' => 'required|string|in:Masculino,Femenino,X',
             'email' => 'required|string|email|max:255',
             'fecha_nacimiento' => 'required|date',
-            'estado' => 'required|string|in:entregado,pendiente', // Validación para el campo estado
-            'rol' => 'required|string|in:root,A,P',
+            'estado' => 'required|string|in:pendiente,programado,atendido,caducado,finalizado',
+            'estado_resultado' => 'required|string|in:pendiente,entregado',
+            'resultados' => 'nullable|string',
+            //'rol' => 'required|string|in:root,A,P',
         ]);
+
+        // Agregar depuración
+        Log::debug('Datos validados:', $validatedData);
 
         // Crear un nuevo turno con los datos validados
         $turno = Turno::create($validatedData);

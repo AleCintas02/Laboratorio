@@ -28,8 +28,10 @@ return new class extends Migration
             $table->string('email');
             $table->string('sexo');
             $table->date('fecha_nacimiento');
-            $table->enum('estado', ['entregado', 'pendiente'])->default('pendiente');
-            $table->enum('rol', ['root', 'A', 'P'])->default('P');
+            $table->enum('estado', ['pendiente', 'programado', 'atendido', 'caducado', 'finalizado'])->default('pendiente');
+            $table->enum('estado_resultado', ['pendiente', 'entregado'])->default('pendiente');
+            $table->string('resultados')->nullable();
+            //$table->enum('rol', ['root', 'A', 'P'])->default('P');
             $table->timestamps();
         });
     }

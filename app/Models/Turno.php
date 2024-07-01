@@ -22,8 +22,11 @@ class Turno extends Model
         'manzana',
         'casa',
         'barrio',
-        'fecha_nacimiento',
-        'sexo',
         'email',
+        'sexo',
+        'fecha_nacimiento',
+        'estado',
+        'estado_resultado',
+        'resultados',
     ];
 }

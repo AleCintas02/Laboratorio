@@ -24,7 +24,7 @@ export default function Authenticated({ user, header, children }) {
                                 <NavLink href={route('dashboard')} active={route().current('dashboard')}>
                                     Dashboard
                                 </NavLink>
-                                {user.role === 'root' && (
+                                {user.rol === 'root' && (
                                     <NavLink href={route('register-admin')} active={route().current('register-admin')}>
                                         Registrar usuario
                                     </NavLink>
