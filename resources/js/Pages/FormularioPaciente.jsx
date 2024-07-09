@@ -30,6 +30,7 @@ const FormularioPaciente = () => {
         email: "",
         sexo: "",
         fecha_nacimiento: "",
+        fecha_turno: "",
         estado: "pendiente",
         estado_resultado: "pendiente",
         resultados: "",

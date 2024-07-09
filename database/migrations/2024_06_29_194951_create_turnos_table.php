@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('sexo');
             $table->date('fecha_nacimiento');
+            $table->date('fecha_turno')->nullable();
             $table->enum('estado', ['pendiente', 'programado', 'atendido', 'caducado', 'finalizado'])->default('pendiente');
             $table->enum('estado_resultado', ['pendiente', 'entregado'])->default('pendiente');
             $table->string('resultados')->nullable();

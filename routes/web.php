@@ -42,12 +42,19 @@ Route::middleware(['auth', 'rol:root'])->group(function () {
         ->name('register-admin');
 
     Route::post('register-admin', [AdminController::class, 'store']);
+    Route::get('/turnos', [TurnoController::class, 'index']);
+    Route::put('/turnos/{id}', [TurnoController::class, 'update']);
+    Route::post('/turnos/{id}/upload-result', [TurnoController::class, 'uploadResult']);
+    Route::get('/resultados/{documento}', [TurnoController::class, 'showResult']);
+    Route::post('/turnos/{id}/upload-result', [TurnoController::class, 'uploadResult']);
+
 });
 
 
 
 Route::prefix('api')->group(function () {
     Route::post('/turnos', [TurnoController::class, 'store']);
+    
 });
 
 
