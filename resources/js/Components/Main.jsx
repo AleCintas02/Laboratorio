@@ -40,13 +40,12 @@ const Main = () => {
                 <div id="reprogramar" className="contenedores-svg">
                     <img className="svg" src={reprogramar} alt="" />
                     <div id="descripcion-programar" className="descripcion">
-                        <h4>¿No pudo asistir a su turno?</h4>
+                        <h4>Consultar Turno</h4>
                         <p>
-                            No se preocupe, puede solicitar la re-programación
-                            del mismo.
+                            Colsulte fecha y hora de su turno.
                         </p>
                         <a href="/reprogramar-turno">
-                            Re-programar turno{" "}
+                            Consultar turno{" "}
                             <i className="bi bi-arrow-right"></i>
                         </a>
                     </div>

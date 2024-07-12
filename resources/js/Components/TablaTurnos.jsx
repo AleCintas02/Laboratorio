@@ -9,6 +9,7 @@ import {
     FormControl,
     InputGroup,
     Form,
+    Alert,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -16,8 +17,10 @@ const TablaTurnos = () => {
     const [turnos, setTurnos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [validationError, setValidationError] = useState(null);
     const [editingTurno, setEditingTurno] = useState(null);
     const [newFechaTurno, setNewFechaTurno] = useState("");
+    const [newHoraTurno, setNewHoraTurno] = useState("");
     const [searchTerm, setSearchTerm] = useState("");
     const [estadoFilter, setEstadoFilter] = useState("");
     const [uploadingResultTurno, setUploadingResultTurno] = useState(null);
@@ -40,13 +43,19 @@ const TablaTurnos = () => {
         setNewFechaTurno(e.target.value);
     };
 
+    const handleTimeChange = (e) => {
+        setNewHoraTurno(e.target.value);
+    };
+
     const handleEditClick = (turno) => {
         setEditingTurno(turno.id);
+        setNewFechaTurno(turno.fecha_turno.split(' ')[0]);
+        setNewHoraTurno(turno.fecha_turno.split(' ')[1]);
     };
 
     const handleSaveClick = (id) => {
         const updatedTurno = {
-            fecha_turno: newFechaTurno,
+            fecha_turno: `${newFechaTurno} ${newHoraTurno}`,
             estado: "programado",
             estado_resultado: "pendiente",
         };
@@ -60,11 +69,19 @@ const TablaTurnos = () => {
                 );
                 setEditingTurno(null);
                 setNewFechaTurno("");
+                setNewHoraTurno("");
+                setValidationError(null);
             })
             .catch((error) => {
-                setError(error);
+                setValidationError(error.response.data.message);
                 console.error("Error updating turno:", error.response.data);
             });
+    };
+
+    const formatDateForDisplay = (dateString) => {
+        const [date, time] = dateString.split(" ");
+        const [year, month, day] = date.split("-");
+        return `${day}/${month}/${year} ${time}`;
     };
 
     const handleAtendidoClick = (id) => {
@@ -149,6 +166,11 @@ const TablaTurnos = () => {
 
     return (
         <Container>
+            {validationError && (
+                <Alert variant="danger" onClose={() => setValidationError(null)} dismissible>
+                    {Object.values(validationError).flat().join(", ")}
+                </Alert>
+            )}
             <Row>
                 <Col>
                     <h3>Listado de Turnos</h3>
@@ -198,13 +220,24 @@ const TablaTurnos = () => {
                                     <td>{turno.estado}</td>
                                     <td>
                                         {editingTurno === turno.id ? (
-                                            <input
-                                                type="date"
-                                                value={newFechaTurno}
-                                                onChange={handleDateChange}
-                                            />
+                                            <>
+                                                <input
+                                                    type="date"
+                                                    value={newFechaTurno}
+                                                    onChange={handleDateChange}
+                                                />
+                                                <input
+                                                    type="time"
+                                                    value={newHoraTurno}
+                                                    onChange={handleTimeChange}
+                                                />
+                                            </>
+                                        ) : turno.fecha_turno ? (
+                                            formatDateForDisplay(
+                                                turno.fecha_turno
+                                            )
                                         ) : (
-                                            turno.fecha_turno || "N/A"
+                                            "N/A"
                                         )}
                                     </td>
                                     <td>
@@ -263,29 +296,26 @@ const TablaTurnos = () => {
                                                     Subir
                                                 </Button>
                                             </>
-                                        ) : (
-                                            turno.estado === "atendido" &&
-                                            !turno.resultados && (
-                                                <Button
-                                                    variant="info"
-                                                    onClick={() =>
-                                                        handleResultUploadClick(
-                                                            turno
-                                                        )
-                                                    }
-                                                >
-                                                    Subir Resultado
-                                                </Button>
-                                            )
+                                        ) : turno.resultados ? (
+                                            <a
+                                                href={`http://127.0.0.1:8000/storage/app/${turno.resultados}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                Ver Resultados
+                                            </a>
+                                        ) : turno.estado === "atendido" && (
+                                            <Button
+                                                variant="primary"
+                                                onClick={() =>
+                                                    handleResultUploadClick(
+                                                        turno
+                                                    )
+                                                }
+                                            >
+                                                Subir Resultado
+                                            </Button>
                                         )}
-                                        <a
-                                            href={`http://127.0.0.1:8000/storage/resultados/${turno.resultados}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="ml-2"
-                                        >
-                                            Ver
-                                        </a>
                                     </td>
                                 </tr>
                             ))}

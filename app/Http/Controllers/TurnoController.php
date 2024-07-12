@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Turno;
+use Carbon\Carbon;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -45,62 +47,96 @@ class TurnoController extends Controller
 
         return response()->json(['message' => 'Turno creado correctamente', 'turno' => $turno], 201);
     }
-
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'fecha_turno' => 'nullable|date',
-            'estado' => 'required|string',
-            'estado_resultado' => 'required|string',
-        ]);
+        $fechaActual = Carbon::now()->timezone('America/Argentina/Buenos_Aires');
 
-        $turno = Turno::findOrFail($id);
 
-        $turno->fecha_turno = $request->input('fecha_turno');
-        $turno->estado = $request->input('estado');
-        $turno->estado_resultado = $request->input('estado_resultado');
+        try {
+            $request->validate([
+                'fecha_turno' => [
+                    'nullable',
+                    'date_format:Y-m-d H:i',
+                    function ($attribute, $value, $fail) use ($fechaActual) {
+                        if (Carbon::parse($value)->lt($fechaActual)) {
+                            $fail('La fecha y hora del turno no pueden ser en el pasado.');
+                        }
+                    },
+                ],
+                'estado' => 'required|string',
+                'estado_resultado' => 'required|string',
+            ]);
 
-        $turno->save();
+            $turno = Turno::findOrFail($id);
+            $turno->estado = $request->input('estado');
+            $turno->estado_resultado = $request->input('estado_resultado');
 
-        return response()->json($turno);
+            if ($request->has('fecha_turno')) {
+                $turno->fecha_turno = $request->input('fecha_turno');
+            }
+
+            $turno->save();
+
+            return response()->json($turno);
+        } catch (ValidationException $e) {
+            return response()->json(['message' => $e->errors()], 422);
+        }
     }
+
 
     public function uploadResult(Request $request, $id)
     {
         $request->validate([
             'archivo_resultado' => 'required|file|mimes:pdf,txt,doc,docx|max:2048',
         ]);
-    
+
         $turno = Turno::findOrFail($id);
-    
+
         // Guardar el archivo en el sistema de almacenamiento
         $path = $request->file('archivo_resultado')->store('public/resultados');
-    
+
         // Actualizar el campo 'resultados' del turno con la ruta del archivo
         $turno->resultados = $path;
         $turno->estado_resultado = 'entregado';
         $turno->estado = 'finalizado';
         $turno->save();
-    
+
         return response()->json(['message' => 'Archivo subido y resultado actualizado', 'turno' => $turno]);
     }
-    
-    
+
+
 
     public function showResult($documento)
     {
         $turno = Turno::where('documento', $documento)->first();
-    
+
         if (!$turno || !$turno->resultados) {
             return response()->json(['error' => 'No se encontró un resultado para el documento ingresado'], 404);
         }
-    
-        // Si estás guardando el archivo en 'public/resultados', 
-        // la ruta en la base de datos debería ser algo como 'resultados/archivo.pdf'
+
         $url = Storage::url($turno->resultados);
-    
+
         return response()->json(['resultado' => $url]);
     }
-    
-    
+    public function buscarTurno($documento)
+    {
+        $turnos = Turno::where('documento', $documento)->get();
+
+        if ($turnos->isEmpty()) {
+            return response()->json(['message' => 'No se encontró ningún turno para el documento proporcionado'], 404);
+        }
+
+        $turnosData = $turnos->map(function ($turno) {
+            return [
+                'turno' => $turno->id,
+                'dni' => $turno->documento,
+                'nombre' => $turno->nombre,
+                'apellido' => $turno->apellido,
+                'fecha' => $turno->fecha_turno ? Carbon::parse($turno->fecha_turno)->format('d/m/Y H:i') : 'No asignado', // Maneja el caso nulo
+                'estado' => $turno->estado,
+            ];
+        });
+
+        return response()->json($turnosData);
+    }
 }

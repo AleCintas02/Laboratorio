@@ -54,6 +54,7 @@ Route::middleware(['auth', 'rol:root'])->group(function () {
 
 Route::prefix('api')->group(function () {
     Route::post('/turnos', [TurnoController::class, 'store']);
+    Route::get('/buscar-turno/{documento}', [TurnoController::class, 'buscarTurno']);
     
 });
 
