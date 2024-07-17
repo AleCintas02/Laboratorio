@@ -44,7 +44,7 @@ const Main = () => {
                         <p>
                             Colsulte fecha y hora de su turno.
                         </p>
-                        <a href="/reprogramar-turno">
+                        <a href="/consultar-turno">
                             Consultar turno{" "}
                             <i className="bi bi-arrow-right"></i>
                         </a>

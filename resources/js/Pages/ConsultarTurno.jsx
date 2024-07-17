@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../../css/ReprogramacionTurno.css";
+import "../../css/ConsultarTurno.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Navbar from "../Components/Navbar";
 
-const ReprogramacionTurno = () => {
+const ConsultarTurno = () => {
     const [documento, setDocumento] = useState("");
     const [turnosEncontrados, setTurnosEncontrados] = useState([]);
 
@@ -84,4 +84,4 @@ const ReprogramacionTurno = () => {
     );
 };
 
-export default ReprogramacionTurno;
+export default ConsultarTurno;

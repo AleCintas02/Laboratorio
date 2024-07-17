@@ -28,8 +28,8 @@ Route::get('/solicitar-turno', function () {
 Route::get('/descargar-resultados', function () {
     return Inertia::render('Resultados');
 });
-Route::get('/reprogramar-turno', function () {
-    return Inertia::render('ReprogramacionTurno');
+Route::get('/consultar-turno', function () {
+    return Inertia::render('ConsultarTurno');
 });
 Route::get('/turno-solicitado-con-exito', function () {
     return Inertia::render('TurnoSolicitado');

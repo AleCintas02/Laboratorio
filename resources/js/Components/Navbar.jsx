@@ -39,12 +39,10 @@ const Navbar = () => {
                             <BotonConOpciones
                                 label="PACIENTES"
                                 opciones={[
-                                    "Buscar mi resultado",
+                                    "Descargar resultado",
                                     "Solicitar turno",
-                                    "Re-programar turno",
                                     "Buscar turno",
                                     "Preguntas frecuentes",
-                                    "Obras sociales",
                                 ]}
                                 isOpen={openMenu === "PACIENTES"}
                                 onMenuClick={() => handleMenuClick("PACIENTES")}

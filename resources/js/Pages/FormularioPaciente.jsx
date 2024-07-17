@@ -341,28 +341,7 @@ const FormularioPaciente = () => {
                                 <div className="text-danger">{errors.sexo}</div>
                             )}
                         </Form.Group>
-                        {errors.documento && (
-                            <div className="text-danger">
-                                {errors.documento}
-                            </div>
-                        )}
                     </Row>
-                    {/* <Row className="mb-3">
-                        <Form.Group as={Col} controlId="formFechaNacimiento">
-                            <Form.Label>Fecha de Nacimiento *</Form.Label>
-                            <FormControl
-                                type="date"
-                                name="fecha_nacimiento"
-                                value={formData.fecha_nacimiento}
-                                onChange={handleChange}
-                            />
-                            {errors.fecha_nacimiento && (
-                                <div className="text-danger">
-                                    {errors.fecha_nacimiento}
-                                </div>
-                            )}
-                        </Form.Group>
-                    </Row> */}
 
                     <Row className="mb-3">
                         <Form.Group as={Col} controlId="formEmail">
