@@ -10,4 +10,5 @@ export default defineConfig({
         }),
         react(),
     ],
+    base: '/', // Asegúrate de que esto esté configurado correctamente
 });
