@@ -113,7 +113,7 @@ const FormularioPaciente = () => {
         // Si no hay errores de validación, enviar el formulario con Axios
         if (Object.keys(validationErrors).length === 0) {
             axios
-                .post("https://laboratorio-production-95fb.up.railway.app/api/turnos", formData)
+                .post("http://127.0.0.1:8000/api/turnos", formData)
                 .then((response) => {
                     console.log(
                         "Formulario enviado correctamente:",
