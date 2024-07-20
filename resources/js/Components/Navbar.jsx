@@ -23,11 +23,11 @@ const Navbar = () => {
                             <BotonConOpciones
                                 label="LABORATORIO"
                                 opciones={[
-                                    "Historia",
-                                    "Nuestro equipo",
-                                    "Calidad",
-                                    "Reconocimientos",
-                                    "Mision, Visión y Valores",
+                                    { label: "Historia", url: "/historia" },
+                                    { label: "Nuestro equipo", url: "/nuestro-equipo" },
+                                    { label: "Calidad", url: "/calidad" },
+                                    { label: "Reconocimientos", url: "/reconocimientos" },
+                                    { label: "Mision, Visión y Valores", url: "/mision-vision-valores" },
                                 ]}
                                 isOpen={openMenu === "LABORATORIO"}
                                 onMenuClick={() =>
@@ -39,10 +39,10 @@ const Navbar = () => {
                             <BotonConOpciones
                                 label="PACIENTES"
                                 opciones={[
-                                    "Descargar resultado",
-                                    "Solicitar turno",
-                                    "Buscar turno",
-                                    "Preguntas frecuentes",
+                                    { label: "Descargar resultado", url: "/descargar-resultados" },
+                                    { label: "Solicitar turno", url: "/solicitar-turno" },
+                                    { label: "Buscar turno", url: "/consultar-turno" },
+                                    { label: "Preguntas frecuentes", url: "/preguntas-frecuentes" },
                                 ]}
                                 isOpen={openMenu === "PACIENTES"}
                                 onMenuClick={() => handleMenuClick("PACIENTES")}
@@ -53,9 +53,9 @@ const Navbar = () => {
                             <BotonConOpciones
                                 label="DERIVACIONES"
                                 opciones={[
-                                    "Solicitar usuario",
-                                    "Cargar derivación",
-                                    "Instructivos para derivantes",
+                                    { label: "Solicitar usuario", url: "/solicitar-usuario" },
+                                    { label: "Cargar derivación", url: "/cargar-derivacion" },
+                                    { label: "Instructivos para derivantes", url: "/instructivos-para-derivantes" },
                                 ]}
                                 isOpen={openMenu === "DERIVACIONES"}
                                 onMenuClick={() =>
@@ -66,7 +66,7 @@ const Navbar = () => {
                         <li>
                             <BotonConOpciones
                                 label="CONTACTO"
-                                url="/contacto" // Asegúrate de ajustar esta URL según tu ruta de contacto
+                                url="/contacto"
                             />
                         </li>
                         <li>
