@@ -28,7 +28,7 @@ const TablaTurnos = () => {
 
     useEffect(() => {
         axios
-            .get("http://127.0.0.1:8000/turnos")
+            .get("https://laboratorio-production-768b.up.railway.app/turnos")
             .then((response) => {
                 setTurnos(response.data);
                 setLoading(false);
@@ -60,7 +60,7 @@ const TablaTurnos = () => {
             estado_resultado: "pendiente",
         };
         axios
-            .put(`http://127.0.0.1:8000/turnos/${id}`, updatedTurno)
+            .put(`https://laboratorio-production-768b.up.railway.app/turnos/${id}`, updatedTurno)
             .then((response) => {
                 setTurnos(
                     turnos.map((turno) =>
@@ -90,7 +90,7 @@ const TablaTurnos = () => {
             estado_resultado: "pendiente",
         };
         axios
-            .put(`http://127.0.0.1:8000/turnos/${id}`, updatedTurno)
+            .put(`https://laboratorio-production-768b.up.railway.app/turnos/${id}`, updatedTurno)
             .then((response) => {
                 setTurnos(
                     turnos.map((turno) =>
@@ -126,7 +126,7 @@ const TablaTurnos = () => {
 
         axios
             .post(
-                `http://127.0.0.1:8000/turnos/${id}/upload-result`,
+                `https://laboratorio-production-768b.up.railway.app/turnos/${id}/upload-result`,
                 formData,
                 {
                     headers: {

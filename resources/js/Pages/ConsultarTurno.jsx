@@ -15,7 +15,7 @@ const ConsultarTurno = () => {
     const handleBuscarClick = (e) => {
         e.preventDefault();
         axios
-            .get(`http://127.0.0.1:8000/api/buscar-turno/${documento}`)
+            .get(`https://laboratorio-production-768b.up.railway.app/api/buscar-turno/${documento}`)
             .then((response) => {
                 setTurnosEncontrados(response.data);
             })
