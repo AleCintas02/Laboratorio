@@ -14,7 +14,7 @@ function Resultados() {
     };
 
     const handleSearchClick = () => {
-        axios.get(`https://laboratorio-production-768b.up.railway.app/resultados/${documento}`)
+        axios.get(`http://127.0.0.1:8000/resultados/${documento}`)
             .then(response => {
                 setResultado(response.data.resultado);
                 setError(null);
