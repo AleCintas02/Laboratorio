@@ -298,7 +298,7 @@ const TablaTurnos = () => {
                                             </>
                                         ) : turno.resultados ? (
                                             <a
-                                                href={`http://127.0.0.1:8000/storage/app/${turno.resultados}`}
+                                                href={`http://127.0.0.1:8000/${turno.resultados}`}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                             >

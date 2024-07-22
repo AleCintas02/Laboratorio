@@ -3,6 +3,7 @@ import axios from "axios";
 import "../../css/ConsultarTurno.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Navbar from "../Components/Navbar";
+import { Head } from "@inertiajs/react";
 
 const ConsultarTurno = () => {
     const [documento, setDocumento] = useState("");
@@ -27,6 +28,7 @@ const ConsultarTurno = () => {
 
     return (
         <>
+            <Head title="Consultar" />
             <Navbar />
             <div className="reprogramacion-container">
                 <h2>Consultar Turno</h2>

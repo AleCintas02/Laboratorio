@@ -40,7 +40,6 @@ Route::get('/turno-solicitado-con-exito', function () {
 Route::middleware(['auth', 'rol:root'])->group(function () {
     Route::get('register-admin', [AdminController::class, 'create'])
         ->name('register-admin');
-
     Route::post('register-admin', [AdminController::class, 'store']);
     Route::get('/turnos', [TurnoController::class, 'index']);
     Route::put('/turnos/{id}', [TurnoController::class, 'update']);
@@ -57,7 +56,6 @@ Route::prefix('api')->group(function () {
     Route::get('/buscar-turno/{documento}', [TurnoController::class, 'buscarTurno']);
     
 });
-
 
 
 

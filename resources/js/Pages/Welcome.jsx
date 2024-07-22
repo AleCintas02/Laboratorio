@@ -20,7 +20,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
 
     return (
         <>
-            <Head title="LAB" />
+            <Head title="Home" />
             <Navbar />
             <div className="cuerpo">
                 <Main></Main>
